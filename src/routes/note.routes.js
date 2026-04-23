@@ -15,6 +15,7 @@ const {
   getNoteById,
   paginateNotes,
   paginateByCategory,
+  sortNotes,
   replaceNote,
   updateNote,
   deleteNote,
@@ -32,6 +33,7 @@ router.get("/filter/category", filterByCategory);
 router.get("/filter/date-range", filterByDateRange);
 router.get("/paginate", paginateNotes);
 router.get("/paginate/category/:category", paginateByCategory);
+router.get("/sort", sortNotes);
 router.post("/", createNote);
 router.get("/", getAllNotes);
 router.get("/:id/summary", getNoteSummary);

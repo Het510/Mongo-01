@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Note = require("../models/note.model");
 
 const allowedCategories = ["work", "personal", "study"];
+const allowedSortFields = ["title", "createdAt", "updatedAt", "category"];
 
 const createNote = async (req, res) => {
   try {
@@ -532,6 +533,38 @@ const paginateByCategory = async (req, res) => {
   }
 };
 
+const sortNotes = async (req, res) => {
+  try {
+    const sortBy = req.query.sortBy || "createdAt";
+    const order = req.query.order === "asc" ? 1 : -1;
+
+    if (!allowedSortFields.includes(sortBy)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid sortBy. Allowed: title, createdAt, updatedAt, category",
+        data: null,
+      });
+    }
+
+    const notes = await Note.find().sort({ [sortBy]: order });
+
+    return res.status(200).json({
+      success: true,
+      message: `Notes sorted by ${sortBy} in ${
+        order === 1 ? "ascending" : "descending"
+      } order`,
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   createNote,
   createBulkNotes,
@@ -550,4 +583,5 @@ module.exports = {
   filterByDateRange,
   paginateNotes,
   paginateByCategory,
+  sortNotes,
 };
