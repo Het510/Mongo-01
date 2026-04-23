@@ -1,36 +1,39 @@
-# Notes Management REST API
+# 📒 Notes Management REST API
 
-A backend assignment project built with Node.js, Express, and MongoDB. This API manages notes with full CRUD support, route parameters, query parameters, pagination, and sorting using a clean MVC structure.
+A production-ready REST API for managing notes — built with **Node.js**, **Express**, and **MongoDB**. Supports full CRUD, route/query parameters, pagination, sorting, and filtering with a clean MVC architecture.
 
-## Live Links
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=flat-square&logo=render)](https://advanced-routing-queries-assignment-8z9j.onrender.com)
+[![API Docs](https://img.shields.io/badge/API%20Docs-Postman-FF6C37?style=flat-square&logo=postman)](https://documenter.getpostman.com/view/50839274/2sBXqGpMCY)
 
-- Render Deployment: https://advanced-routing-queries-assignment-8z9j.onrender.com
-- Postman Documentation: https://documenter.getpostman.com/view/50839274/2sBXqGpMCY
+---
 
-## Project Overview
+## ✨ Features
 
-This project was built from scratch as a Notes Management REST API. It follows the assignment requirements exactly and exposes endpoints for:
+- Create, read, update, replace, and delete notes (single & bulk)
+- Filter notes by category, pinned status, and date range
+- Paginate result sets with configurable page sizes
+- Sort notes by allowed fields
+- Consistent JSON response format across all endpoints
+- Clean MVC folder structure for easy extensibility
 
-- creating single and multiple notes
-- reading notes in different ways
-- replacing and updating notes
-- deleting single and multiple notes
-- filtering with route params and query params
-- paginating result sets
-- sorting notes by allowed fields
+---
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- dotenv
-- nodemon
+| Layer | Technology |
+|---|---|
+| Runtime | Node.js |
+| Framework | Express.js |
+| Database | MongoDB |
+| ODM | Mongoose |
+| Config | dotenv |
+| Dev Server | nodemon |
 
-## Folder Structure
+---
 
-```text
+## 📁 Folder Structure
+
+```
 advanced-routing-queries-assignment/
 ├── src/
 │   ├── config/
@@ -48,113 +51,143 @@ advanced-routing-queries-assignment/
 ├── .env
 ├── .env.example
 ├── package.json
-├── package-lock.json
 └── README.md
 ```
 
-## API Endpoints
+---
 
-### CRUD
+## 🔌 API Endpoints
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| POST | `/api/notes` | Create a note |
-| POST | `/api/notes/bulk` | Create multiple notes |
-| GET | `/api/notes` | Get all notes |
-| GET | `/api/notes/:id` | Get note by id |
-| PUT | `/api/notes/:id` | Replace note |
-| PATCH | `/api/notes/:id` | Update note partially |
-| DELETE | `/api/notes/:id` | Delete single note |
-| DELETE | `/api/notes/bulk` | Delete multiple notes |
+### CRUD Operations
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/notes` | Create a single note |
+| `POST` | `/api/notes/bulk` | Create multiple notes |
+| `GET` | `/api/notes` | Get all notes |
+| `GET` | `/api/notes/:id` | Get a note by ID |
+| `PUT` | `/api/notes/:id` | Replace a note |
+| `PATCH` | `/api/notes/:id` | Partially update a note |
+| `DELETE` | `/api/notes/:id` | Delete a single note |
+| `DELETE` | `/api/notes/bulk` | Delete multiple notes |
 
 ### Route Parameters
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| GET | `/api/notes/category/:category` | Get notes by category |
-| GET | `/api/notes/status/:isPinned` | Get notes by pinned status |
-| GET | `/api/notes/:id/summary` | Get note summary |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/notes/category/:category` | Get notes by category |
+| `GET` | `/api/notes/status/:isPinned` | Get notes by pinned status |
+| `GET` | `/api/notes/:id/summary` | Get a note's summary |
 
-### Query Parameters
+### Query Parameters & Filtering
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| GET | `/api/notes/filter` | General filtering |
-| GET | `/api/notes/filter/pinned` | Get pinned notes |
-| GET | `/api/notes/filter/category` | Filter by category query |
-| GET | `/api/notes/filter/date-range` | Filter by created date range |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/notes/filter` | General filtering |
+| `GET` | `/api/notes/filter/pinned` | Get pinned notes |
+| `GET` | `/api/notes/filter/category` | Filter by category |
+| `GET` | `/api/notes/filter/date-range` | Filter by creation date range |
 
 ### Pagination
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| GET | `/api/notes/paginate` | Paginate all notes |
-| GET | `/api/notes/paginate/category/:category` | Paginate notes by category |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/notes/paginate` | Paginate all notes |
+| `GET` | `/api/notes/paginate/category/:category` | Paginate notes by category |
 
 ### Sorting
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| GET | `/api/notes/sort` | Sort all notes |
-| GET | `/api/notes/sort/pinned` | Sort pinned notes |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/notes/sort` | Sort all notes |
+| `GET` | `/api/notes/sort/pinned` | Sort pinned notes |
 
-## How To Run Locally
+---
 
-1. Clone the repository:
+## 📦 Response Format
+
+All endpoints return a consistent JSON structure:
+
+```json
+{
+  "success": true,
+  "message": "Notes fetched successfully",
+  "data": {}
+}
+```
+
+List endpoints include a `count` field. Paginated endpoints additionally include a `pagination` object:
+
+```json
+{
+  "success": true,
+  "message": "Notes fetched successfully",
+  "count": 20,
+  "pagination": {
+    "page": 1,
+    "limit": 10,
+    "totalPages": 2,
+    "totalItems": 20
+  },
+  "data": []
+}
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Priyankkhatri/advanced-routing-queries-assignment.git
-```
-
-2. Move into the project directory:
-
-```bash
 cd advanced-routing-queries-assignment
 ```
 
-3. Install dependencies:
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-4. Create a `.env` file and add your environment variables.
+### 3. Configure environment variables
 
-5. Start the development server:
-
-```bash
-npm run dev
-```
-
-6. Start the production server:
-
-```bash
-npm start
-```
-
-## Environment Variables
-
-Use the following values in your `.env` file:
+Create a `.env` file in the root of the project:
 
 ```env
 MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/notes-db
 PORT=5000
 ```
 
-## Response Format
+> Copy `.env.example` as a starting point.
 
-All endpoints follow this format:
+### 4. Start the server
 
-```json
-{
-  "success": true,
-  "message": "Message here",
-  "data": {}
-}
+```bash
+# Development (with hot reload)
+npm run dev
+
+# Production
+npm start
 ```
 
-List endpoints include `count`, and paginated endpoints include a `pagination` object.
+The server will be running at `http://localhost:5000`.
 
-## Author
+---
 
-Priyank Khatri
+## 🌐 Live Links
+
+| Resource | URL |
+|---|---|
+| Live API | https://advanced-routing-queries-assignment-8z9j.onrender.com |
+| API Documentation | https://documenter.getpostman.com/view/50839274/2sBXqGpMCY |
+
+---
+
+## 👤 Author
+
+**Priyank Khatri**
+
+---
+
+> Built as a backend assignment project demonstrating REST API design, MVC architecture, and advanced Express.js routing patterns.
