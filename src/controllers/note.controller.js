@@ -385,6 +385,31 @@ const filterNotes = async (req, res) => {
   }
 };
 
+const getPinnedNotes = async (req, res) => {
+  try {
+    const filter = { isPinned: true };
+
+    if (req.query.category) {
+      filter.category = req.query.category;
+    }
+
+    const notes = await Note.find(filter);
+
+    return res.status(200).json({
+      success: true,
+      message: "Pinned notes fetched successfully",
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   createNote,
   createBulkNotes,
@@ -398,4 +423,5 @@ module.exports = {
   getNotesByStatus,
   getNoteSummary,
   filterNotes,
+  getPinnedNotes,
 };
