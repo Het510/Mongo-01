@@ -13,6 +13,7 @@ const {
   getNotesByStatus,
   getNoteSummary,
   getNoteById,
+  paginateNotes,
   replaceNote,
   updateNote,
   deleteNote,
@@ -28,6 +29,7 @@ router.get("/filter", filterNotes);
 router.get("/filter/pinned", getPinnedNotes);
 router.get("/filter/category", filterByCategory);
 router.get("/filter/date-range", filterByDateRange);
+router.get("/paginate", paginateNotes);
 router.post("/", createNote);
 router.get("/", getAllNotes);
 router.get("/:id/summary", getNoteSummary);
