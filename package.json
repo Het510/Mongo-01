@@ -1,24 +1,19 @@
 {
-  "name": "advanced-routing-queries-assignment",
+  "name": "hetrathod-notes-assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "Notes management REST API assignment by Het Rathod",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Priyankkhatri/advanced-routing-queries-assignment.git"
-  },
   "keywords": [],
-  "author": "",
+  "author": "Het Rathod",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Priyankkhatri/advanced-routing-queries-assignment/issues"
+  "engines": {
+    "node": ">=20"
   },
-  "homepage": "https://github.com/Priyankkhatri/advanced-routing-queries-assignment#readme",
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

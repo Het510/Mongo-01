@@ -5,6 +5,31 @@ const noteRoutes = require("./routes/note.routes");
 const app = express();
 
 app.use(express.json());
+
+app.get("/", (_req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Notes API is running",
+    data: null,
+  });
+});
+
+app.get("/health", (_req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Service is healthy",
+    data: null,
+  });
+});
+
 app.use("/api/notes", noteRoutes);
+
+app.use((_req, res) => {
+  return res.status(404).json({
+    success: false,
+    message: "Route not found",
+    data: null,
+  });
+});
 
 module.exports = app;

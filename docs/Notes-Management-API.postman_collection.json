@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "Notes Management API - Het Rathod",
+    "_postman_id": "6f3ef996-7c69-45c4-88ea-9e96d5ccf8f5",
+    "description": "Postman collection for the Notes Management REST API assignment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "noteId",
+      "value": "replace-with-note-id"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/"
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "Create Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Prepare backend submission\",\n  \"content\": \"Finish routing, queries, deployment, and docs.\",\n  \"category\": \"study\",\n  \"isPinned\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/notes"
+          }
+        },
+        {
+          "name": "Create Bulk Notes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": [\n    {\n      \"title\": \"DSA revision\",\n      \"content\": \"Practice arrays and linked lists.\",\n      \"category\": \"study\",\n      \"isPinned\": false\n    },\n    {\n      \"title\": \"Project meeting\",\n      \"content\": \"Prepare agenda for the team sync.\",\n      \"category\": \"work\",\n      \"isPinned\": true\n    }\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/notes/bulk"
+          }
+        },
+        {
+          "name": "Get All Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes"
+          }
+        },
+        {
+          "name": "Get Note By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/{{noteId}}"
+          }
+        },
+        {
+          "name": "Get Note Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/{{noteId}}/summary"
+          }
+        },
+        {
+          "name": "Replace Note",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated full note\",\n  \"content\": \"This content replaces the entire document.\",\n  \"category\": \"personal\",\n  \"isPinned\": false\n}"
+            },
+            "url": "{{baseUrl}}/api/notes/{{noteId}}"
+          }
+        },
+        {
+          "name": "Patch Note",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isPinned\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/notes/{{noteId}}"
+          }
+        },
+        {
+          "name": "Delete Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/{{noteId}}"
+          }
+        },
+        {
+          "name": "Delete Bulk Notes",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"664f1a2b3c4d5e6f70819201\",\n    \"664f1a2b3c4d5e6f70819202\"\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/notes/bulk"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Filtering and Queries",
+      "item": [
+        {
+          "name": "Get Notes By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/category/study"
+          }
+        },
+        {
+          "name": "Get Notes By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/status/true"
+          }
+        },
+        {
+          "name": "Filter Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/filter?category=study&isPinned=true"
+          }
+        },
+        {
+          "name": "Get Pinned Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/filter/pinned?category=work"
+          }
+        },
+        {
+          "name": "Filter By Category Query",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/filter/category?name=personal"
+          }
+        },
+        {
+          "name": "Filter By Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/filter/date-range?from=2026-01-01&to=2026-12-31"
+          }
+        },
+        {
+          "name": "Paginate Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/paginate?page=1&limit=5"
+          }
+        },
+        {
+          "name": "Paginate Notes By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/paginate/category/study?page=1&limit=5"
+          }
+        },
+        {
+          "name": "Sort Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/sort?sortBy=createdAt&order=desc"
+          }
+        },
+        {
+          "name": "Sort Pinned Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/notes/sort/pinned?sortBy=title&order=asc"
+          }
+        }
+      ]
+    }
+  ]
+}
