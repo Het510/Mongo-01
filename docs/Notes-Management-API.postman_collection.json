@@ -8,7 +8,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://localhost:5000"
+      "value": "https://mongo-01-notes-assignment.onrender.com"
     },
     {
       "key": "noteId",

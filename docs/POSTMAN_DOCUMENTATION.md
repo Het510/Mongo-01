@@ -7,7 +7,11 @@ Import `docs/Notes-Management-API.postman_collection.json` into Postman.
 Set the collection variable:
 
 - `baseUrl` = `http://localhost:5000` for local testing
-- `baseUrl` = `https://your-render-service.onrender.com` after deployment
+- `baseUrl` = `https://mongo-01-notes-assignment.onrender.com` for the live deployment
+
+Published documentation:
+
+- `https://documenter-api.postman.tech/view/50839251/2sBXqGpggR`
 
 ## Sample Request Body
 

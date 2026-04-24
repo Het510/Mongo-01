@@ -50,7 +50,7 @@ http://localhost:5000
 Render:
 
 ```text
-https://your-render-service.onrender.com
+https://mongo-01-notes-assignment.onrender.com
 ```
 
 ## Health Endpoints
@@ -106,6 +106,10 @@ Detailed endpoint notes are available in:
 
 - `docs/POSTMAN_DOCUMENTATION.md`
 
+Published Postman documentation:
+
+- `https://documenter-api.postman.tech/view/50839251/2sBXqGpggR`
+
 ## Render Deployment
 
 A Render Blueprint file is included:
@@ -126,6 +130,10 @@ Then create the service on Render from your GitHub repository. Render will use:
 
 - Build command: `npm ci`
 - Start command: `npm start`
+
+Live deployment:
+
+- `https://mongo-01-notes-assignment.onrender.com`
 
 ## Author
 
