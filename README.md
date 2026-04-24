@@ -48,7 +48,6 @@ advanced-routing-queries-assignment/
 │   │   └── note.routes.js
 │   ├── app.js
 │   └── index.js
-├── .env
 ├── .env.example
 ├── package.json
 └── README.md
